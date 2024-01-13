@@ -555,14 +555,17 @@ namespace ASCOM.TSO.Dome
                 LogMessage("CloseShutter", domeShutterState.ToString());
                 domeShutterState = ShutterStatus;
             }
-            else
+            else if (roofcommand == 1)
             {
-                LogMessage("CloseShutter", "Roof close error.");
-                domeShutterState = ShutterState.shutterError;
-                throw new DriverException("Roof controller returned an error.");
+                LogMessage("CloseShutter", "Roof already closed.");
+                throw new InvalidOperationException("Roof already closed");
+            }
+            else if (roofcommand == 2)
+            {
+                LogMessage("CloseShutter", "Roof is moving.");
+                throw new InvalidOperationException("Roof is moving");
             }
         }
-
         /// <summary>
         /// Start operation to search for the dome home position.
         /// </summary>
@@ -584,11 +587,15 @@ namespace ASCOM.TSO.Dome
                 domeShutterState = ShutterStatus;
                 LogMessage("OpenShutter", domeShutterState.ToString());
             }
-            else
+            else if (roofcommand == 1)
             {
-                LogMessage("OpenShutter", "Roof open error.");
-                domeShutterState = ShutterState.shutterError;
-                throw new DriverException("Roof controller returned an error.");
+                LogMessage("OpenShutter", "Roof already open.");
+                throw new InvalidOperationException("Roof already open");
+            }
+            else if (roofcommand == 2)
+            {
+                LogMessage("OpenShutter", "Roof is moving.");
+                throw new InvalidOperationException("Roof is moving");
             }
         }
 

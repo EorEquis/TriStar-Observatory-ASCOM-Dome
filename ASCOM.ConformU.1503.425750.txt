@@ -1,0 +1,140 @@
+15:03:42.584 ASCOM Universal Device Conformance Checker Version 2.1.0.23787, Build time: Thu 11 January 2024 11:25:50          
+15:03:42.585                                              
+15:03:42.586 Operating system is Microsoft Windows 10.0.19045 64bit, Application is 64bit.          
+15:03:42.586                                              
+15:03:42.586 COM Driver ProgID: ASCOM.TSO.Dome            
+15:03:42.586                                              
+15:03:42.588 CreateDevice                        INFO     Creating NATIVE COM device: ASCOM.TSO.Dome
+15:03:43.374 CreateDevice                        INFO     Successfully created driver
+15:03:44.381 CreateDevice                        OK       Driver instance created successfully
+15:03:44.382                                              
+15:03:44.383 Connect to device                            
+15:03:44.426 Connected                           OK       Connected to device successfully using Connected = True
+15:03:44.426                                              
+15:03:44.429 Common Driver Methods                        
+15:03:44.430 InterfaceVersion                    OK       2
+15:03:44.430 Connected                           OK       True
+15:03:44.435 Description                         OK       TriStar Observatory ROR Driver
+15:03:44.437 DriverInfo                          OK       TriStar Observatory ROR Driver. Version: 2.0
+15:03:44.440 DriverVersion                       OK       2.0.0.0
+15:03:44.442 Name                                OK       TriStar Observatory ROR Driver
+15:03:44.443                                              
+15:03:44.443 Action                              INFO     Conform cannot test the Action method
+15:03:44.464 SupportedActions                    OK       Driver returned an empty action list
+15:03:44.464                                              
+15:03:44.464 DeviceState                         INFO     DeviceState tests omitted - DeviceState is not available in this interface version.
+15:03:44.464                                              
+15:03:44.465 Can Properties                               
+15:03:44.469 CanFindHome                         OK       False
+15:03:44.471 CanPark                             OK       False
+15:03:44.473 CanSetAltitude                      OK       False
+15:03:44.475 CanSetAzimuth                       OK       False
+15:03:44.477 CanSetPark                          OK       False
+15:03:44.480 CanSetShutter                       OK       True
+15:03:44.482 CanSlave                            OK       False
+15:03:44.484 CanSyncAzimuth                      OK       False
+15:03:44.484                                              
+15:03:44.484 Pre-run Checks                               
+15:03:44.489 DomeSafety                                   Open shutter check box is unchecked so shutter not opened
+15:03:44.489                                              
+15:03:44.489 Properties                                   
+15:03:44.489 Altitude                            INFO     You have configured Conform not to open the shutter so the following test may fail.
+15:03:44.508 Altitude                            OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:03:44.520 AtHome                              OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:03:44.523 AtPark                              OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:03:44.527 Azimuth                             OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:03:44.694 ShutterStatus                       OK       Closed
+15:03:44.697 Slaved Read                         OK       False
+15:03:44.701 Slaved Write                        OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:03:44.702 Slewing                             OK       False
+15:03:44.702                                              
+15:03:44.702 Methods                                      
+15:03:44.730 AbortSlew                           OK       AbortSlew command issued successfully
+15:03:44.736 SlewToAltitude                      OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:03:44.740 SlewToAzimuth                       OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:03:44.744 SyncToAzimuth                       OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:03:44.745 DomeSafety                                   Open shutter check box is unchecked so shutter test bypassed
+15:03:54.752 DomeSafety                                   Open shutter check box is unchecked so shutter test bypassed
+15:04:01.413 StopClick                           INFO     STOPPING TESTER
+15:04:01.759                                              
+15:04:01.759 Disconnect from device                       
+15:04:01.761 Connected                           OK       False
+15:04:01.761                                              
+15:04:01.761 Conformance test interrupted by STOP button or to protect the device.          
+15:04:01.761                                              
+15:04:01.762 Your device had 1 issue, 0 errors and 0 configuration alerts          
+15:04:01.762                                              
+15:04:01.763 Issue Summary                                
+15:04:01.763 StopKey                             ISSUE    The conformance test is incomplete because it was interrupted by the stop key or to protect the device being tested.
+15:04:49.725 ASCOM Universal Device Conformance Checker Version 2.1.0.23787, Build time: Thu 11 January 2024 11:25:50          
+15:04:49.726                                              
+15:04:49.726 Operating system is Microsoft Windows 10.0.19045 64bit, Application is 64bit.          
+15:04:49.726                                              
+15:04:49.726 COM Driver ProgID: ASCOM.TSO.Dome            
+15:04:49.726                                              
+15:04:49.727 CreateDevice                        INFO     Creating NATIVE COM device: ASCOM.TSO.Dome
+15:04:49.921 CreateDevice                        INFO     Successfully created driver
+15:04:50.932 CreateDevice                        OK       Driver instance created successfully
+15:04:50.932                                              
+15:04:50.933 Connect to device                            
+15:04:50.939 Connected                           OK       Connected to device successfully using Connected = True
+15:04:50.939                                              
+15:04:50.939 Common Driver Methods                        
+15:04:50.939 InterfaceVersion                    OK       2
+15:04:50.940 Connected                           OK       True
+15:04:50.941 Description                         OK       TriStar Observatory ROR Driver
+15:04:50.950 DriverInfo                          OK       TriStar Observatory ROR Driver. Version: 2.0
+15:04:50.951 DriverVersion                       OK       2.0.0.0
+15:04:50.952 Name                                OK       TriStar Observatory ROR Driver
+15:04:50.952                                              
+15:04:50.953 Action                              INFO     Conform cannot test the Action method
+15:04:50.964 SupportedActions                    OK       Driver returned an empty action list
+15:04:50.964                                              
+15:04:50.965 DeviceState                         INFO     DeviceState tests omitted - DeviceState is not available in this interface version.
+15:04:50.965                                              
+15:04:50.965 Can Properties                               
+15:04:50.966 CanFindHome                         OK       False
+15:04:50.967 CanPark                             OK       False
+15:04:50.968 CanSetAltitude                      OK       False
+15:04:50.970 CanSetAzimuth                       OK       False
+15:04:50.970 CanSetPark                          OK       False
+15:04:50.971 CanSetShutter                       OK       True
+15:04:50.972 CanSlave                            OK       False
+15:04:50.972 CanSyncAzimuth                      OK       False
+15:04:50.972                                              
+15:04:50.973 Pre-run Checks                               
+15:04:50.974 DomeSafety                                   Attempting to open shutter as some tests may fail if it is closed...
+15:05:07.657 DomeSafety                          OK       Shutter status: Open
+15:05:07.658                                              
+15:05:07.658 Properties                                   
+15:05:07.663 Altitude                            OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:05:07.664 AtHome                              OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:05:07.666 AtPark                              OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:05:07.667 Azimuth                             OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:05:07.687 ShutterStatus                       OK       Open
+15:05:07.688 Slaved Read                         OK       False
+15:05:07.690 Slaved Write                        OK       Optional member returned a PropertyNotImplementedException (COM Error: 0x80040400) error.
+15:05:07.690 Slewing                             OK       False
+15:05:07.690                                              
+15:05:07.691 Methods                                      
+15:05:07.714 AbortSlew                           OK       AbortSlew command issued successfully
+15:05:07.715 SlewToAltitude                      OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:05:07.717 SlewToAzimuth                       OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:05:07.718 SyncToAzimuth                       OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:05:21.356 CloseShutter                        OK       Shutter closed successfully
+15:05:49.008 OpenShutter                         OK       Shutter opened successfully
+15:06:09.026 FindHome                            OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:06:09.029 Park                                OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:06:09.032 SetPark                             OK       Optional member returned a MethodNotImplementedException (COM Error: 0x80040400) error.
+15:06:09.032                                              
+15:06:09.033 Post-run Checks                              
+15:06:09.033 DomeSafety                          INFO     Attempting to close shutter...
+15:06:19.652 DomeSafety                          OK       Shutter successfully closed
+15:06:19.654 DomeSafety                          INFO     CanPark is false - skipping dome parking
+15:06:19.654                                              
+15:06:19.654 Disconnect from device                       
+15:06:19.655 Connected                           OK       False
+15:06:19.655                                              
+15:06:19.656 Conformance test has finished                
+15:06:19.656                                              
+15:06:19.656 No errors, warnings or issues found: your driver passes ASCOM validation!!          
