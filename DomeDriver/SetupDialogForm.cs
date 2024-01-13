@@ -25,24 +25,8 @@ namespace ASCOM.TSO.Dome
 
         private void CmdOK_Click(object sender, EventArgs e) // OK button event handler
         {
-            // Place any validation constraint checks here and update the state variables with results from the dialogue
-
             tl.Enabled = chkTrace.Checked;
-
-            // Update the COM port variable if one has been selected
-            if (comboBoxComPort.SelectedItem is null) // No COM port selected
-            {
-                tl.LogMessage("Setup OK", $"New configuration values - COM Port: Not selected");
-            }
-            else if (comboBoxComPort.SelectedItem.ToString() == NO_PORTS_MESSAGE)
-            {
-                tl.LogMessage("Setup OK", $"New configuration values - NO COM ports detected on this PC.");
-            }
-            else // A valid COM port has been selected
-            {
-                DomeHardware.comPort = (string)comboBoxComPort.SelectedItem;
-                tl.LogMessage("Setup OK", $"New configuration values - COM Port: {comboBoxComPort.SelectedItem}");
-            }
+            DomeHardware.URL = txtURL.Text;
         }
 
         private void CmdCancel_Click(object sender, EventArgs e) // Cancel button event handler
@@ -69,31 +53,16 @@ namespace ASCOM.TSO.Dome
 
         private void InitUI()
         {
+            Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            string driverVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
+            labelVer.Text = driverVersion;
 
             // Set the trace checkbox
             chkTrace.Checked = tl.Enabled;
 
-            // set the list of COM ports to those that are currently available
-            comboBoxComPort.Items.Clear(); // Clear any existing entries
-            using (Serial serial = new Serial()) // User the Se5rial component to get an extended list of COM ports
-            {
-                comboBoxComPort.Items.AddRange(serial.AvailableCOMPorts);
-            }
+            txtURL.Text = DomeHardware.URL;
 
-            // If no ports are found include a message to this effect
-            if (comboBoxComPort.Items.Count == 0)
-            {
-                comboBoxComPort.Items.Add(NO_PORTS_MESSAGE);
-                comboBoxComPort.SelectedItem = NO_PORTS_MESSAGE;
-            }
-
-            // select the current port if possible
-            if (comboBoxComPort.Items.Contains(DomeHardware.comPort))
-            {
-                comboBoxComPort.SelectedItem = DomeHardware.comPort;
-            }
-
-            tl.LogMessage("InitUI", $"Set UI controls to Trace: {chkTrace.Checked}, COM Port: {comboBoxComPort.SelectedItem}");
+            tl.LogMessage("InitUI", $"Set UI controls to Trace: {chkTrace.Checked}, COM Port: {txtURL.Text}");
         }
 
         private void SetupDialogForm_Load(object sender, EventArgs e)

@@ -32,19 +32,21 @@ namespace ASCOM.TSO.Dome
     internal static class DomeHardware
     {
         // Constants used for Profile persistence
-        internal const string comPortProfileName = "COM Port";
-        internal const string comPortDefault = "COM1";
+        internal const string URLProfileName = "API URL";
+        internal const string URLDefault = "http://192.168.50.150/";
         internal const string traceStateProfileName = "Trace Level";
         internal const string traceStateDefault = "true";
 
         private static string DriverProgId = ""; // ASCOM DeviceID (COM ProgID) for this driver, the value is set by the driver's class initialiser.
         private static string DriverDescription = ""; // The value is set by the driver's class initialiser.
-        internal static string comPort; // COM port name (if required)
+        internal static string URL = "";
         private static bool connectedState; // Local server's connected state
         private static bool runOnce = false; // Flag to enable "one-off" activities only to run once.
         internal static Util utilities; // ASCOM Utilities object for use as required
         internal static AstroUtils astroUtilities; // ASCOM AstroUtilities object for use as required
         internal static TraceLogger tl; // Local server's trace logger object for diagnostic log with information that you specify
+        internal static ShutterState domeShutterState = ShutterState.shutterError;  // We statr in error state, since there is no Unknown.
+
 
         /// <summary>
         /// Initializes a new instance of the device Hardware class.
@@ -279,7 +281,7 @@ namespace ASCOM.TSO.Dome
 
                 if (value)
                 {
-                    LogMessage("Connected Set", $"Connecting to port {comPort}");
+                    LogMessage("Connected Set", $"Connecting to {URL}");
 
                     // TODO insert connect to the device code here
 
@@ -287,7 +289,7 @@ namespace ASCOM.TSO.Dome
                 }
                 else
                 {
-                    LogMessage("Connected Set", $"Disconnecting from port {comPort}");
+                    LogMessage("Connected Set", $"Disconnecting from {URL}");
 
                     // TODO insert disconnect from the device code here
 
@@ -319,7 +321,7 @@ namespace ASCOM.TSO.Dome
             {
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
                 // TODO customise this driver description if required
-                string driverInfo = $"Information about the driver itself. Version: {version.Major}.{version.Minor}";
+                string driverInfo = $"TriStar Observatory ROR Driver. Version: {version.Major}.{version.Minor}";
                 LogMessage("DriverInfo Get", driverInfo);
                 return driverInfo;
             }
@@ -333,7 +335,7 @@ namespace ASCOM.TSO.Dome
             get
             {
                 Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-                string driverVersion = $"{version.Major}.{version.Minor}";
+                string driverVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
                 LogMessage("DriverVersion Get", driverVersion);
                 return driverVersion;
             }
@@ -360,7 +362,7 @@ namespace ASCOM.TSO.Dome
             // TODO customise this device name as required
             get
             {
-                string name = "Short driver name - please customise";
+                string name = "TriStar Observatory ROR Driver";
                 LogMessage("Name Get", name);
                 return name;
             }
@@ -370,15 +372,17 @@ namespace ASCOM.TSO.Dome
 
         #region IDome Implementation
 
-        private static bool domeShutterState = false; // Variable to hold the open/closed status of the shutter, true = Open
+        // This seems wrong.  ShutterState has 5 values.  Why are they making this a boolean in the template.  Roofs don't teleport.
+        // Pretty sure this will break stuff.
+        // private static bool domeShutterState = false; // Variable to hold the open/closed status of the shutter, true = Open
 
         /// <summary>
         /// Immediately stops any and all movement of the dome.
         /// </summary>
         internal static void AbortSlew()
         {
-            // This is a mandatory parameter but we have no action to take in this simple driver
-            LogMessage("AbortSlew", "Completed");
+            LogMessage("AbortSlew", "Roof has been halted");
+            LocalServer.SharedResources.roofCommand(URL, "abort");  // abort has no return value
         }
 
         /// <summary>
@@ -543,8 +547,20 @@ namespace ASCOM.TSO.Dome
         /// </summary>
         internal static void CloseShutter()
         {
-            LogMessage("CloseShutter", "Shutter has been closed");
-            domeShutterState = false;
+
+            LogMessage("CloseShutter", "Roof close requested.");
+            int roofcommand = LocalServer.SharedResources.roofCommand(URL, "close");    // roof_command returns 1 (error) or 0 (success)
+            if (roofcommand == 0)
+            {
+                LogMessage("CloseShutter", domeShutterState.ToString());
+                domeShutterState = ShutterStatus;
+            }
+            else
+            {
+                LogMessage("CloseShutter", "Roof close error.");
+                domeShutterState = ShutterState.shutterError;
+                throw new DriverException("Roof controller returned an error.");
+            }
         }
 
         /// <summary>
@@ -561,8 +577,19 @@ namespace ASCOM.TSO.Dome
         /// </summary>
         internal static void OpenShutter()
         {
-            LogMessage("OpenShutter", "Shutter has been opened");
-            domeShutterState = true;
+            LogMessage("OpenShutter", "Roof open requested");
+            int roofcommand = LocalServer.SharedResources.roofCommand(URL, "open");
+            if (roofcommand == 0)
+            {
+                domeShutterState = ShutterStatus;
+                LogMessage("OpenShutter", domeShutterState.ToString());
+            }
+            else
+            {
+                LogMessage("OpenShutter", "Roof open error.");
+                domeShutterState = ShutterState.shutterError;
+                throw new DriverException("Roof controller returned an error.");
+            }
         }
 
         /// <summary>
@@ -590,17 +617,12 @@ namespace ASCOM.TSO.Dome
         {
             get
             {
-                LogMessage("ShutterStatus Get", false.ToString());
-                if (domeShutterState)
-                {
-                    LogMessage("ShutterStatus", ShutterState.shutterOpen.ToString());
-                    return ShutterState.shutterOpen;
-                }
-                else
-                {
-                    LogMessage("ShutterStatus", ShutterState.shutterClosed.ToString());
-                    return ShutterState.shutterClosed;
-                }
+                string strShutter = LocalServer.SharedResources.getVariable(URL, "shutterState");
+                int intShutter = int.Parse(strShutter);
+                ShutterState currentState = (ShutterState)intShutter;
+
+                LogMessage("ShutterStatus Get", currentState.ToString());
+                return currentState;
             }
         }
 
@@ -686,7 +708,7 @@ namespace ASCOM.TSO.Dome
         {
             get
             {
-                // TODO check that the driver hardware connection exists and is connected to the hardware
+                // It's an API.  there is no connected state
                 return connectedState;
             }
         }
@@ -712,7 +734,7 @@ namespace ASCOM.TSO.Dome
             {
                 driverProfile.DeviceType = "Dome";
                 tl.Enabled = Convert.ToBoolean(driverProfile.GetValue(DriverProgId, traceStateProfileName, string.Empty, traceStateDefault));
-                comPort = driverProfile.GetValue(DriverProgId, comPortProfileName, string.Empty, comPortDefault);
+                URL = driverProfile.GetValue(DriverProgId, URLProfileName, string.Empty, URLDefault);
             }
         }
 
@@ -725,7 +747,7 @@ namespace ASCOM.TSO.Dome
             {
                 driverProfile.DeviceType = "Dome";
                 driverProfile.WriteValue(DriverProgId, traceStateProfileName, tl.Enabled.ToString());
-                driverProfile.WriteValue(DriverProgId, comPortProfileName, comPort.ToString());
+                driverProfile.WriteValue(DriverProgId, URLProfileName, URL);
             }
         }
 

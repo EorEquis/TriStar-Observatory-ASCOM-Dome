@@ -35,7 +35,7 @@ namespace ASCOM.TSO.Dome
     [ComVisible(true)]
     [Guid("a0420b5b-f0af-45e2-9294-e44c6fbf6ef0")]
     [ProgId("ASCOM.TSO.Dome")]
-    [ServedClassName("ASCOM Dome Driver for TSO")] // Driver description that appears in the Chooser, customise as required
+    [ServedClassName("TriStar Observatory ROR Driver")] // Driver description that appears in the Chooser, customise as required
     [ClassInterface(ClassInterfaceType.None)]
     public class Dome : ReferenceCountedObjectBase, IDomeV2, IDisposable
     {
