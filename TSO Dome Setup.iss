@@ -34,13 +34,13 @@ Name: "{cf}\ASCOM\Uninstall\Dome\TSO Dome"
 ; TODO: Add subfolders below {app} as needed (e.g. Name: "{app}\MyFolder")
 
 [Files]
-Source: "G:\Dev\Git\TriStar Observatory ASCOM Dome V2\bin\Release\ASCOM.TSO.Dome.exe"; DestDir: "{app}"
+Source: "G:\Dev\Git\TriStar Observatory ASCOM Dome\bin\Release\ASCOM.TSO.Dome.exe"; DestDir: "{app}"
 ; TODO: Add driver assemblies into the ServedClasses folder
 ; Require a read-me HTML to appear after installation, maybe driver's Help doc
-Source: "G:\Dev\Git\TriStar Observatory ASCOM Dome V2\README.TXT"; DestDir: "{app}"; Flags: isreadme
+Source: "G:\Dev\Git\TriStar Observatory ASCOM Dome\README.TXT"; DestDir: "{app}"; Flags: isreadme
 ; TODO: Add other files needed by your driver here (add subfolders above)
-Source: "G:\Dev\Git\TriStar Observatory ASCOM Dome V2\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"
-Source: "G:\Dev\Git\TriStar Observatory ASCOM Dome V2\bin\Release\Newtonsoft.Json.xml"; DestDir: "{app}"
+Source: "G:\Dev\Git\TriStar Observatory ASCOM Dome\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"
+Source: "G:\Dev\Git\TriStar Observatory ASCOM Dome\bin\Release\Newtonsoft.Json.xml"; DestDir: "{app}"
 
 
 ; Only if driver is .NET

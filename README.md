@@ -1,4 +1,4 @@
-# TriStar Observatory ASCOM Dome V2
+# TriStar Observatory ASCOM Dome
 
 New implementation of the ASCOM Dome interface for controlling a simple roll off roof via an API, no USB/Serial required.
 
