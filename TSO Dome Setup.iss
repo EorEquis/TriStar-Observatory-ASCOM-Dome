@@ -4,8 +4,8 @@
 ;
 [Setup]
 AppID={{2e521343-57d8-4870-b3d5-474e730be79f}
-AppName=ASCOM TSO ROR Driver
-AppVerName=ASCOM TSO ROR Driver 2.0.0.3
+AppName=TriStar Observatory ASCOM ROR Driver
+AppVerName=TriStar Observatory ASCOM ROR Driver 2.0.0.3
 AppVersion=2.0.0.3
 AppPublisher=EoEquis <eeyore@stuffupthere.com>
 AppPublisherURL=mailto:eeyore@stuffupthere.com
