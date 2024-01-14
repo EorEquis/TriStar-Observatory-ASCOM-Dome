@@ -54,7 +54,7 @@ namespace ASCOM.TSO.Dome
         private void InitUI()
         {
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            string driverVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
+            string driverVersion = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
             labelVer.Text = "Version: " + driverVersion;
 
             // Set the trace checkbox
