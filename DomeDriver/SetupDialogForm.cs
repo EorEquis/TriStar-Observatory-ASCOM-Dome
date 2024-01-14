@@ -55,7 +55,7 @@ namespace ASCOM.TSO.Dome
         {
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             string driverVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
-            labelVer.Text = driverVersion;
+            labelVer.Text = "Version: " + driverVersion;
 
             // Set the trace checkbox
             chkTrace.Checked = tl.Enabled;
