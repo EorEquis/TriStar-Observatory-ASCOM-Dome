@@ -23,7 +23,7 @@ It basically only does 2 things.  Open the roof.  Close the roof.  It's a simple
 * A RTC module for the Arduino.  Not currently used in the ASCOM driver, but present for future development.
 * Some means of supplying the necessary power to your motor.  Depends on motor, SMC, etc.
 * Some sort of project box to hold the arduino, the SMC, and various connectors, if desired.
-* The arduino code from [TriStar-Obs-Control-Server](https://github.com/EorEquis/TriStar-Obs-Control-Server)
+* The arduino code from [TriStar-Obs-Control-Server](https://github.com/EorEquis/TriStar-Observatory-Control-Server)
 
 ## Getting Started
 * Connect the SMC to your motor and power supply per Pololu's documentation
