@@ -5,8 +5,8 @@
 [Setup]
 AppID={{2e521343-57d8-4870-b3d5-474e730be79f}
 AppName=ASCOM TSO ROR Driver
-AppVerName=ASCOM TSO ROR Driver 2.0.0.2
-AppVersion=2.0.0.2
+AppVerName=ASCOM TSO ROR Driver 2.0.0.3
+AppVersion=2.0.0.3
 AppPublisher=EoEquis <eeyore@stuffupthere.com>
 AppPublisherURL=mailto:eeyore@stuffupthere.com
 AppSupportURL=https://ascomtalk.groups.io/g/Help
@@ -17,7 +17,7 @@ DefaultDirName="{cf}\ASCOM\Dome"
 DisableDirPage=yes
 DisableProgramGroupPage=yes
 OutputDir="."
-OutputBaseFilename="TriStar_Observatory_ROR_ASCOM_Setup-2.0.0.2"
+OutputBaseFilename="TriStar_Observatory_ROR_ASCOM_Setup-2.0.0.3"
 Compression=lzma
 SolidCompression=yes
 ; Put there by Platform if Driver Installer Support selected
