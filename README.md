@@ -18,6 +18,10 @@ It basically only does 2 things.  Open the roof.  Close the roof.  It's a simple
 * An ethernet shield or some other ethernet device for the Arduino.  WiFi could work as well, but my Arduino code doesn't consider it.
 * 2 limit switches.  
   * The code and diagrams presume normally closed (NC) switches.  NO switches CAN be used, but aren't reocmmended, and will require some DIY to reconfigure the SMC, wire correctly, and so on.  NC switches allow a limit to "trip" if a switch or wiring fails, and thus prevent potentially dangerous unlimited operation.
+  * Just remember, using NC switches means :
+    * When closed is open and open is closed, roof is closed
+    * When closed is closed and open is open, roof is open
+    * When closed is closed and open is closed, roof is neither open nor closed 
   * Limit switches can be pretty much whatever you want to cobble together.  Roller type, small micros, reed switches, up to you.
   * All you need to be able to do is have a switch that is normally closed until your roof gets wherever it's supposed to, at which point something opens the switch.
 * A RTC module for the Arduino.  Not currently used in the ASCOM driver, but present for future development.
